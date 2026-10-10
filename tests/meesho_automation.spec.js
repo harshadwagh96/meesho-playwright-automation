@@ -3,8 +3,11 @@ import {test, expect} from '@playwright/test';
 test('meesho automation', async ({ page }) => {
   await page.goto('https://supplier.meesho.com/panel/v3/new/growth/2rude/home');
 
-  await page.getByLabel('Email Id or mobile number').fill('Hardik.wagh333@gmail.com');
-  await page.getByLabel('Password').fill('Hardik@333');
+  const email = process.env.MEESHO_EMAIL;
+  await page.getByLabel('Email Id or mobile number').fill(email);
+  
+  const password = process.env.MEESHO_PASSWORD;
+  await page.getByLabel('Password').fill(password);
 
   await page.getByRole('button', { name: 'Log in' }).click();
 
@@ -16,8 +19,8 @@ test('meesho automation', async ({ page }) => {
   
   if(table_visible.isVisible()) {
     console.log("Table is visible");
-    // await page.locator('//input[@aria-label="select all rows"]').check();
-    await page.locator('//input[@aria-label="Select row 0"]').check();
+    await page.locator('//input[@aria-label="select all rows"]').check();
+    await page.getByRole('button', { name: 'Accept Selected Orders' }).click();
   }
   else
   {
@@ -25,6 +28,6 @@ test('meesho automation', async ({ page }) => {
   }
     
   
-  // await page.pause();
+  await page.pause();
 
 });
