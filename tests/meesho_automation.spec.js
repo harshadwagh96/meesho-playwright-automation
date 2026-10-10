@@ -29,8 +29,4 @@ test('meesho automation', async ({ page }) => {
   {
     console.log("No Pending orders");
   }
-    
-  
-  await page.pause();
-
 });
