@@ -37,15 +37,14 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'],
-             headless: true,
-             viewport: null,
-            launchOptions: {
-          args: ['--start-maximized'],
+      use: {
+        channel: 'chrome',
+        headless: false,
+        viewport: process.env.CI ? { width: 1920, height: 1080 } : null,
+        launchOptions: {
+          args: process.env.CI ? [] : ['--start-maximized'],
         },
-
-       },
-    },
+      },
 
     // {
     //   name: 'firefox',
@@ -76,7 +75,7 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
-  ],
+}],
 
   /* Run your local dev server before starting the tests */
   // webServer: {
