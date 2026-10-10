@@ -39,7 +39,7 @@ export default defineConfig({
       name: 'chromium',
       use: {
         channel: 'chrome',
-        headless: false,
+        headless: true,
         viewport: process.env.CI ? { width: 1920, height: 1080 } : null,
         launchOptions: {
           args: process.env.CI ? [] : ['--start-maximized'],
