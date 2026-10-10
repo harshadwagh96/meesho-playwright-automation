@@ -23,7 +23,7 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --config=playwright.config.js
         env:
           MEESHO_EMAIL: ${{ secrets.MEESHO_EMAIL }}
           MEESHO_PASSWORD: ${{ secrets.MEESHO_PASSWORD }}
