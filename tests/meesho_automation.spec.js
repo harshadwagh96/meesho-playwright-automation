@@ -25,6 +25,6 @@ test('meesho automation', async ({ page }) => {
   }
     
   
-  await page.pause();
+  // await page.pause();
 
 });
