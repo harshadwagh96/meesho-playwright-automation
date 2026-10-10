@@ -1,34 +1,30 @@
-name: Meesho Automation (Playwright)
+name: Meesho Automation (Self-hosted)
 
 on:
   push:
     branches: [main, master]
-  # pull_request:
-  #   branches: [main, master]
-  
+
 
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium   # sirf chromium, fast hota hai
+        run: npx playwright install chromium
 
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          CI: true
           MEESHO_EMAIL: ${{ secrets.MEESHO_EMAIL }}
           MEESHO_PASSWORD: ${{ secrets.MEESHO_PASSWORD }}
 
