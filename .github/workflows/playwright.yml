@@ -3,6 +3,10 @@ name: Meesho Automation (Self-hosted)
 on:
   push:
     branches: [main, master]
+  
+  schedule:
+    - cron: "30 3 * * *"   # roz 9:00 AM IST (UTC 03:30)
+  workflow_dispatch:        # GitHub UI se manually run karne ke liye
 
 concurrency:                      # <-- yahan
   group: meesho-automation
